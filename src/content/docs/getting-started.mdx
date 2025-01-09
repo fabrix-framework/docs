@@ -5,7 +5,7 @@ description: Getting started
 
 Fabrix is designed to work with React applications, so you’ll need to set up a React app using create-react-app or a similar tool before getting started.
 
-# Install
+## Install
 
 To start using fabrix, we have to install two dependent packages:
 
@@ -18,7 +18,7 @@ In this quick start, we will use fabrix with Chakra UI components.
 npm install --save @fabrix-framework/fabrix @fabrix-framework/chakra-ui
 ```
 
-# Add provider
+## Add provider
 
 Add `FabrixProvider` that configures fabrix in your app.
 
@@ -42,52 +42,4 @@ The `url` prop specifies the endpoint of your GraphQL server. This is the URL wh
 
 The `componentRegistry` prop defines which components Fabrix should use to render different fields and data types. It acts as a mapping between GraphQL types and React components. Fabrix includes a default component registry, such as Chakra UI components, but you can also provide your own custom registry. See [Custom components](#custom-components) for more detail.
 
-# Render views
-
-Give your own query to `query` prop to render components with fabrix.
-
-```tsx
-import { FabrixComponent } from "@fabrix-framework/fabrix"
-
-const Characters = () => {
-  return (
-    <FabrixComponent
-      query={`
-        query characters {
-          characters {
-            collection {
-              id
-              name
-              status
-            }
-          }
-        }
-      `}
-    />
-  )
-}
-```
-
-Fabrix can also automatically generate forms from GraphQL mutations. The fields in the form are derived from the input types specified in the mutation variables. This allows you to quickly create and render forms based on your GraphQL schema without manually defining each form field.
-
-When you provide a mutation to Fabrix, it inspects the input types of the mutation to determine the fields that should be included in the form. 
-
-Here’s an example of how you can use Fabrix to render a form from a mutation:
-
-```tsx
-import { FabrixComponent } from "@fabrix-framework/fabrix";
-
-const CreateCharacter = () => {
-  return (
-    <FabrixComponent
-      mutation={`
-        mutation createCharacter($input: CreateCharacterInput!) {
-          createCharacter(input: $input) {
-            id
-          }
-        }
-      `}
-    />
-  );
-}
-```
+All set! Now you can start using Fabrix in your app.

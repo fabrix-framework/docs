@@ -17,7 +17,7 @@ export const Providers = (props: React.PropsWithChildren) =>
   </FabrixProvider>
 ```
 
-### Creating your own `ComponentRegistry`
+## Creating your own `ComponentRegistry`
 
 The `ComponentRegistry` supports two types of components:
 

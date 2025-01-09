@@ -27,8 +27,8 @@ const starlightOptions = starlight({
           slug: "guides/component",
         },
         {
-          label: "Styling",
-          slug: "guides/styling",
+          label: "Children props",
+          slug: "guides/children-props",
         },
       ],
     },
