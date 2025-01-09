@@ -7,7 +7,7 @@ Fabrix provides powerful GraphQL directives that allow you to customize the rend
 
 This eliminates the need to manually configure components in your React codebase, streamlining the development process.
 
-### `fabrixView`
+## `fabrixView`
 
 The `@fabrixView` directive enables you to define how specific fields in your GraphQL schema should be rendered in a view. You can customize various aspects of the field’s appearance, such as:
 
@@ -33,7 +33,7 @@ query getCharacter($id: ID!) {
 }
 ```
 
-### `fabrixForm`
+## `fabrixForm`
 
 The `@fabrixForm` directive is used to configure how fields should be rendered in forms. It provides similar customization options as `@fabrixView`, with additional form-specific properties like:
 
@@ -51,6 +51,23 @@ mutation createCharacter($input: CreateCharacterInput!) {
     { field: "status", config: { defaultValue: "user@example.com", gridCol: 6 } }
   ]) {
     id
+  }
+}
+```
+
+## Using custom Components
+You can use the `fabrixView` and `fabrixForm` directives to specify custom components for rendering fields and forms. 
+
+The directives allow you to define how each field in a query or mutation should be displayed. The `name` field in the `componentType` configuration should match the name of the component provided in the `componentRegistry`.
+
+```graphql
+query getCharacter($id: ID!) {
+  getCharacter(id: $id) @fabrixView(input: [
+    { field: "name", config: { label: "Name", componentType: { name: "myCustomField" } } }
+    { field: "email", config: { label: "Email", componentType: { name: "myCustomField" } } }
+  ]) {
+    name
+    email
   }
 }
 ```
