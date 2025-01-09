@@ -31,6 +31,10 @@ const starlightOptions = starlight({
           label: "Children props",
           slug: "guides/children-props",
         },
+        {
+          label: "Provider",
+          slug: "guides/provider",
+        },
       ],
     },
     {
@@ -53,6 +57,10 @@ const starlightOptions = starlight({
     {
       label: "Recipes",
       autogenerate: { directory: "recipes" },
+    },
+    {
+      label: "Component libraries",
+      autogenerate: { directory: "component-libraries" },
     },
   ],
   customCss: ["./src/styles/color-theme.css", "./src/styles/custom.css"],

@@ -16,6 +16,26 @@ const Characters = () => {
   return (
     <FabrixComponent
       query={`
+        #
+        # GraphQL queries...
+        #
+      `}
+    />
+  )
+}
+```
+
+Fabrix can also automatically generate forms from GraphQL mutations. The fields in the form are derived from the input types specified in the mutation variables. This allows you to quickly create and render forms based on your GraphQL schema without manually defining each form field.
+
+### Query
+
+```tsx
+import { FabrixComponent } from "@fabrix-framework/fabrix"
+
+const Characters = () => {
+  return (
+    <FabrixComponent
+      query={`
         query characters {
           characters {
             collection {
@@ -31,7 +51,7 @@ const Characters = () => {
 }
 ```
 
-Fabrix can also automatically generate forms from GraphQL mutations. The fields in the form are derived from the input types specified in the mutation variables. This allows you to quickly create and render forms based on your GraphQL schema without manually defining each form field.
+### Mutation
 
 When you provide a mutation to Fabrix, it inspects the input types of the mutation to determine the fields that should be included in the form.
 
