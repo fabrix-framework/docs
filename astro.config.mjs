@@ -4,7 +4,8 @@ import starlight from "@astrojs/starlight";
 import astroReact from "@astrojs/react";
 
 const starlightOptions = starlight({
-  title: "Fabrix",
+  title:
+    "Fabrix - Leverage the power of GraphQL to generate UI components directly from your schema.",
   logo: {
     light: "./src/assets/logo_black.svg",
     dark: "./src/assets/logo_white.svg",
