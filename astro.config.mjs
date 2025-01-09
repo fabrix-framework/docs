@@ -55,12 +55,16 @@ const starlightOptions = starlight({
       slug: "guides/directives",
     },
     {
-      label: "Recipes",
-      autogenerate: { directory: "recipes" },
+      label: "Tools",
+      items: [{ label: "Fabrix editor", slug: "tools/fabrix-editor" }],
     },
     {
       label: "Component libraries",
       autogenerate: { directory: "component-libraries" },
+    },
+    {
+      label: "Recipes",
+      autogenerate: { directory: "recipes" },
     },
   ],
   customCss: ["./src/styles/color-theme.css", "./src/styles/custom.css"],
