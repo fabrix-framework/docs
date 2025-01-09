@@ -1,16 +1,16 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Fabrix 
+description: Leverage the power of GraphQL to generate UI components directly from your schema.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Leverage the power of GraphQL to generate UI components directly from your schema.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/logo_mark.svg
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Getting Started 
+      link: /getting-started
       icon: right-arrow
-    - text: Read the Starlight docs
+    - text: See recipes 
       link: https://starlight.astro.build
       icon: external
       variant: minimal
@@ -18,19 +18,20 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
-
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Works with your existing app" icon="download" >
+    Fabrix can work with any existing React app, and can be used with any GraphQL schema.
+    See the [Component API](/guides/component) for more information.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Bring your own component" icon="seti:react">
+    Fabrix is designed to be agnostic to the components you use. You can use any component library, or even build your own.
+    We already have [component libraries](/guides/component-library) that you can use out of the box.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Fabrix editor" icon="pen">
+    Fabrix comes with a powerful editor that allows you to see how your GraphQL schema will be rendered in real time.
+  </Card>
+  <Card title="Directive API" icon="seti:graphql">
+    Fabrix comes with a powerful directive API that allows you to customize how your components are rendered.
+    See the [Directive API](/guides/directive) for more information.
+  </Card>
 </CardGrid>
