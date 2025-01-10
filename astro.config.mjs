@@ -20,7 +20,7 @@ const starlightOptions = starlight({
   head: [
     {
       tag: "meta",
-      attrs: { property: "og:image", content: "./docs/og.png" },
+      attrs: { property: "og:image", content: "/docs/og.png" },
     },
   ],
   sidebar: [
