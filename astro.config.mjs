@@ -13,10 +13,16 @@ const starlightOptions = starlight({
     alt: "Fabrix Logo",
     replacesTitle: true,
   },
-  favicon: "./src/assets/favicon.svg",
+  favicon: "./favicon.svg",
   social: {
     github: "https://github.com/fabrix-framework/fabrix",
   },
+  head: [
+    {
+      tag: "meta",
+      attrs: { property: "og:image", content: "./og.png" },
+    },
+  ],
   sidebar: [
     {
       label: "Getting Started",
