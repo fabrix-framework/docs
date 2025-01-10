@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import astroReact from "@astrojs/react";
+import astroLiveCode from "astro-live-code";
 import starlightLinksValidator from "starlight-links-validator";
 
 const starlightOptions = starlight({
@@ -95,5 +96,15 @@ const starlightOptions = starlight({
 export default defineConfig({
   site: "https://fabrix-framework.github.io",
   base: "/docs",
-  integrations: [astroReact(), starlightOptions],
+  integrations: [
+    astroReact(),
+    astroLiveCode({
+      defaultProps: {
+        theme: "dark",
+        "client:load": true,
+      },
+      layout: "./src/components/CodePreview.astro",
+    }),
+    starlightOptions,
+  ],
 });

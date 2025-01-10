@@ -23,6 +23,9 @@ importers:
       astro-embed:
         specifier: ^0.9.0
         version: 0.9.0(astro@5.1.3(@types/node@18.19.70)(rollup@4.30.1)(typescript@5.7.2))
+      astro-live-code:
+        specifier: ^0.0.5
+        version: 0.0.5
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -974,6 +977,9 @@ packages:
     resolution: {integrity: sha512-Tvdc7RV0G92BbtyEOsfJtXU35w41CkM94fOAzxbQP67Wj5jArfserJ321FO4XA7WG9QMV0GIBmQq77NBIRDzpQ==}
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
+
+  astro-live-code@0.0.5:
+    resolution: {integrity: sha512-9WxpUp1N5Z2ent8R2WHr/jqneKHf0+XCPEoNfQ2qDK1nbsLMJHKo3F0r8/RXcslzN3/UioE8M70vHbz+Z8DUjQ==}
 
   astro@5.1.3:
     resolution: {integrity: sha512-Zl/B4hmueJmlI5FJQcwbBRhHbRvbTWaTJzimkbH+jYczR5blt4uSh0DheyAt/+NwcnGfiC11z/XXJYIBR4LPUw==}
@@ -3385,6 +3391,12 @@ snapshots:
     dependencies:
       astro: 5.1.3(@types/node@18.19.70)(rollup@4.30.1)(typescript@5.7.2)
       rehype-expressive-code: 0.38.3
+
+  astro-live-code@0.0.5:
+    dependencies:
+      estree-util-visit: 2.0.0
+      magic-string: 0.30.17
+      unist-util-visit-parents: 6.0.1
 
   astro@5.1.3(@types/node@18.19.70)(rollup@4.30.1)(typescript@5.7.2):
     dependencies:

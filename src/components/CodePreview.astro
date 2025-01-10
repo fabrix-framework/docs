@@ -1,0 +1,39 @@
+---
+import { Tabs, TabItem } from "@astrojs/starlight/components"
+---
+
+<Tabs>
+  <TabItem label="code">
+    <div class="live-code-layout">
+      <slot name="code" />
+    </div>
+  </TabItem>
+  <TabItem label="preview">
+    <div class="live-code-layout">
+      <div class="example-container">
+        <div>
+          <slot name="example" />
+        </div>
+      </div>
+    </div>
+  </TabItem>
+</Tabs>
+
+<style>
+  .live-code-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .example-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem;
+    background: var(--ec-frm-edBg, var(--astro-code-color-background));
+    border-style: solid;
+    border-width: var(--ec-brdWd, 1px);
+    border-color: var(--ec-brdCol, var(--sl-color-gray-5));
+    border-bottom: none;
+  }
+</style>
