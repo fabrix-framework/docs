@@ -74,5 +74,7 @@ const starlightOptions = starlight({
 });
 
 export default defineConfig({
+  site: "https://fabrix-framework.github.io",
+  base: "/docs",
   integrations: [astroReact(), starlightOptions],
 });
