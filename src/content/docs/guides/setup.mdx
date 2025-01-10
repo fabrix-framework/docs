@@ -2,6 +2,7 @@
 title: Getting started
 description: Getting started
 ---
+import { Aside } from '@astrojs/starlight/components';
 
 Fabrix is designed to work with React applications, so you’ll need to set up a React app using create-react-app or a similar tool before getting started.
 
@@ -15,9 +16,11 @@ npm install --save @fabrix-framework/fabrix
 
 ## Install component package
 
-Fabrix uses components to render different fields and data types. You can use the default components provided by fabrix (chakra-ui for now) or create your own custom components.
-
 In this quick start, we will use fabrix with our chakra-ui package.
+
+<Aside>
+You can use the other components provided by fabrix that you want or your own custom component pacakges if you have.
+</Aside>
 
 ```bash
 npm install --save @fabrix-framework/chakra-ui

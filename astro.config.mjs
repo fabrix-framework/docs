@@ -25,8 +25,21 @@ const starlightOptions = starlight({
   ],
   sidebar: [
     {
+      label: "Why Fabrix?",
+      slug: "why-fabrix",
+    },
+    {
       label: "Getting Started",
-      slug: "getting-started",
+      items: [
+        {
+          label: "Setup",
+          slug: "guides/setup",
+        },
+        {
+          label: "FAQ",
+          slug: "guides/faq",
+        },
+      ],
     },
     {
       label: "Component API",
