@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import astroReact from "@astrojs/react";
+import starlightLinksValidator from "starlight-links-validator";
 
 const starlightOptions = starlight({
   title:
@@ -69,6 +70,7 @@ const starlightOptions = starlight({
     },
   ],
   customCss: ["./src/styles/color-theme.css", "./src/styles/custom.css"],
+  plugins: [starlightLinksValidator()],
 });
 
 export default defineConfig({
