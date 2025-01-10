@@ -7,11 +7,11 @@ Fabrix allows you to customize how different types of data are rendered by provi
 
 This prop enables you to define which React components should be used for various GraphQL types and fields, giving you the flexibility to tailor the UI components to fit your application’s needs.
 
-```tsx
+```diff lang="tsx"
 export const Providers = (props: React.PropsWithChildren) =>
   <FabrixProvider
     // ...
-    componentRegistry={yourOwnCustomRegistry}
++    componentRegistry={yourOwnCustomRegistry}
   >
     {props.children}
   </FabrixProvider>

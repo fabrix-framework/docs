@@ -63,16 +63,13 @@ Add `FabrixProvider` that configures fabrix in your app.
 import { FabrixProvider } from "@fabrix-framework/fabrix";
 import { ChakraUIRegistry } from "@fabrix-framework/chakra-ui";
 
-const Providers = (props: React.PropsWithChildren) => {
-  return (
-    <FabrixProvider
-      url={"http://localhost:3000/graphql"}
-      componentRegistry={ChakraUIRegistry}
-    >
-      {props.children}
-    </FabrixProvider>
-  )
-}
+const Providers = (props: React.PropsWithChildren) =>
+  <FabrixProvider
+    url={"http://localhost:3000/graphql"}
+    componentRegistry={ChakraUIRegistry}
+  >
+    {props.children}
+  </FabrixProvider>
 ```
 
 The `url` prop specifies the endpoint of your GraphQL server. This is the URL where Fabrix will send queries and mutations to interact with your backend. It should point to your GraphQL server’s endpoint. 

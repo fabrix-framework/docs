@@ -21,7 +21,7 @@ The terminalogies used in functions that children prop provides are coming from 
 
 Fabrix renders components based on the selection in a GraphQL operation, so this function is the minimum unit to render a component.
 
-```tsx
+```diff lang="tsx"
 <FabrixComponent 
   query={`
     query getData {
@@ -49,7 +49,7 @@ Fabrix renders components based on the selection in a GraphQL operation, so this
   {({ getComponent }) => (
     <>
       <h1>Company list</h1>
-      {getComponent("getData", "contacts")}
++      {getComponent("getData", "contacts")}
     </>
   )}
 </FabrixComponent>
@@ -61,7 +61,7 @@ Fabrix renders components based on the selection in a GraphQL operation, so this
 
 Fabrix supports multiple operations in `query` prop, so with this function users would be able to render components selectively.
 
-```tsx
+```diff lang="tsx"
 <FabrixComponent 
   query={`
     query getUsers {
@@ -91,7 +91,7 @@ Fabrix supports multiple operations in `query` prop, so with this function users
   {({ getOperation }) => (
     <>
       <h1>User list</h1>
-      {getOperation("getContacts")}
++      {getOperation("getContacts")}
     </>
   )}
 </FabrixComponent>
@@ -99,16 +99,16 @@ Fabrix supports multiple operations in `query` prop, so with this function users
 
 Plus, `getOperation` has a render prop in the second argument that gives us `getComponent` as well.
 
-```tsx
+```diff lang="tsx"
 <FabrixComponent 
   query={/* same query as the example above */}
 >
   {({ getOperation }) => (
     <>
       <h1>User list</h1>
-      {getOperation("getUsers", ({ getComponent }) => (
-        getComponent("users")
-      ))}
++      {getOperation("getUsers", ({ getComponent }) => (
++        getComponent("users")
++      ))}
     </>
   )}
 </FabrixComponent>
