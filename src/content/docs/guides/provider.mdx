@@ -2,5 +2,64 @@
 title: Provider
 description: Provider
 ---
+import OptionalBadge from '../../../components/OptionalBadge.astro';
 
 This page describes APIs that `FabrixProvider` has.
+
+## `url`
+
+The GraphQL API endpoint to make requests to by fabrix.
+
+```diff lang="tsx"
+const Providers = (props: React.PropsWithChildren) =>
+  <FabrixProvider
++   url="https://api.example.com/graphql"
+  >
+    {props.children}
+  </FabrixProvider>
+```
+
+## `serverSchema`
+
+<OptionalBadge />
+
+GraphQL schema of the server. This prop accepts a string or [`GraphQLSchema`](https://graphql.org/graphql-js/type/#graphqlschema) type.
+
+Usually, you don't need to provide this prop because Fabrix fetches the schema from the server automatically. 
+However, if you want to provide the schema manually, you can do so with this prop.
+
+## `prependExchanges`
+
+<OptionalBadge />
+
+Fabrix internally uses [urql](https://github.com/urql-graphql/urql) to make requests to the GraphQL API, and `FabrixProvider` has a prop to prepend exchanges (`prependExchanges`) to the urql client.
+
+```diff lang="tsx"
+const Providers = (props: React.PropsWithChildren) =>
+  <FabrixProvider
+    // ...
++    prependExchanges={/* add your own urql exchanges here */}
+  >
+    {props.children}
+  </FabrixProvider>
+```
+
+The minimum implementation of urql exchange to set authentication header from your environment variable for each request is as follow:
+
+```ts
+import { authExchange } from "@urql/exchange-auth";
+
+export const dumbAuthExchange = authExchange(async (utils) => {
+  return {
+    addAuthToOperation: (operation) => {
+      return utils.appendHeaders(operation, {
+        Authorization: `Bearer: ${process.env.AUTHENTICATION_TOKEN}`,
+      });
+    },
+    didAuthError: () => false,
+    refreshAuth: () => Promise.resolve(),
+  };
+});
+```
+
+To customize exchanges, see more at [authoring exchanges](https://commerce.nearform.com/open-source/urql/docs/advanced/authoring-exchanges/) in urql documents.
