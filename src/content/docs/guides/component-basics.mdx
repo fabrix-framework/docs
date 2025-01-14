@@ -1,0 +1,114 @@
+---
+title: Basics 
+description: Basics 
+---
+import { Aside } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import SingleQueryImage from "../../../assets/image-single.png"
+import CollectionQueryImage from "../../../assets/image-collection.png"
+import FormImage from "../../../assets/image-form.png"
+
+Fabrix is a library that allows you to quickly build React components from GraphQL queries and mutations.
+The simplest way to use Fabrix is to use the component API. 
+
+Give your own query to `query` prop to render components with fabrix.
+
+```tsx
+import { FabrixComponent } from "@fabrix-framework/fabrix"
+
+const YourComponent = () =>
+  <FabrixComponent
+    query={`
+      #
+      # Your GraphQL queries go here...
+      #
+    `}
+  />
+```
+
+By reading the query, Fabrix automatically determindes the type of the query and it looks up the default component from [the component registry](/docs/guides/component-registry) specified in the [FabrixProvider](/docs/guides/provider).
+
+## Query (single)
+
+The most basic component that Fabrix can render is a component that is rendered from a single value query. This component is rendered from a query that returns a single value. 
+
+The query is executed when the component is mounted and the result is rendered as simple rows.
+
+<Image src={SingleQueryImage} alt="a component that is rendered from a single value query" />
+
+```tsx
+import { FabrixComponent } from "@fabrix-framework/fabrix"
+
+const GetUser = () =>
+  <FabrixComponent
+    query={`
+      query getUser {
+        user {
+          name
+          email
+          createdAt
+        }
+      }
+    `}
+  />
+```
+
+## Query (collection)
+
+<Aside type="tip">
+If the root selection has `edges.node` or `collection` fields, Fabrix assumes that the query is a collection query. 
+</Aside>
+
+A collection query is usually rendered as a table with the columns derived from the fields in the query, but it depends on the implementation of the corresponding component.
+
+<Image src={CollectionQueryImage} alt="a component that is rendered from a collection query" />
+
+```tsx
+import { FabrixComponent } from "@fabrix-framework/fabrix"
+
+const GetUsers = () =>
+  <FabrixComponent
+    query={`
+      query getUsers {
+        users {
+          edges {
+            node {
+              name
+              email
+              createdAt
+            }
+          }
+        }
+      }
+    `}
+  />
+```
+
+## Mutation
+
+Fabrix can also automatically generate forms from GraphQL mutations. 
+
+The fields in the form are derived from the input types specified in the mutation variables. This allows you to quickly create and render forms based on your GraphQL schema without manually defining each form field.
+
+<Image src={FormImage} alt="a component that is rendered from a mutation" />
+
+```tsx
+import { FabrixComponent } from "@fabrix-framework/fabrix";
+
+const CreateUser = () =>
+  <FabrixComponent
+    mutation={`
+      mutation createUser($input: CreateUserInput!) {
+        createUser(input: $input) {
+          id
+        }
+      }
+    `}
+  />
+```
+
+## Styling
+
+`FabrixComponent` renders the queries as the default component goes. 
+
+Need more customization? See [the children props](/docs/guides/children-props) to customize the rendering of the components.

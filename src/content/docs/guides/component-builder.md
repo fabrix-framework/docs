@@ -8,3 +8,7 @@ Component registry also has a funcionality to dynamically create a React compone
 ## `getFabrixComponent`
 
 TBW
+
+## Example
+
+TBW

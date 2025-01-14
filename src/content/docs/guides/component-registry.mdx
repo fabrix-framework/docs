@@ -1,0 +1,109 @@
+---
+title: Component registry 
+description: Component registry 
+---
+
+Fabrix allows you to customize how different types of data are rendered by providing a `componentRegistry` prop in `FabrixProvider`. 
+
+This prop enables you to define which React components should be used for various GraphQL types and fields, giving you the flexibility to tailor the UI components to fit your application’s needs.
+
+```diff lang="tsx"
+export const Providers = (props: React.PropsWithChildren) =>
+  <FabrixProvider
+    // ...
++    componentRegistry={yourOwnCustomRegistry}
+  >
+    {props.children}
+  </FabrixProvider>
+```
+
+## Component types 
+
+|name|description|
+|-----|-------|
+|**Default**|Components used when no custom component are specified. <br/> `FabrixComponent` always uses the default components.|
+|**Custom**|Components used in replacing the corresponding default components to render. <br /> These components can be used through [Directive API](/docs/guides/directives) or [the custom component builder](/docs/guides/component-builder)|
+
+```tsx
+import { ComponentRegistry } from "@fabrix-framework/fabrix";
+
+const yourCustomRegistry = new ComponentRegistry({
+  default: {
+    /*
+     * Default components
+     */
+  },
+  custom: {
+    /*
+     * Custom components
+     */ 
+  },
+});
+```
+
+## Component categories
+
+Both for default and custom components, there are categories to cover different types of GraphQL queries.
+
+### Fields
+
+`Fields` is the component type that is used to render [the single query](/docs/guides/component-basics#query-single) view.
+
+#### Example
+
+```tsx
+import { ComponentRegistry } from "@fabrix-framework/fabrix";
+
+const yourCustomRegistry = new ComponentRegistry({
+  custom: {
+    composite: {
+      myCustomFields: {
+        type: "fields"
+        component: () => // ...
+      },
+    },
+  },
+});
+```
+
+### Table
+
+`Table` is the component type that is used to render [the collection query](/docs/guides/component-basics#query-collection) view.
+
+#### Example
+
+```tsx
+import { ComponentRegistry } from "@fabrix-framework/fabrix";
+
+const yourCustomRegistry = new ComponentRegistry({
+  custom: {
+    composite: {
+      myCustomFields: {
+        type: "table"
+        component: () => // ...
+      },
+    },
+  },
+});
+```
+
+### Form
+
+`Form` is the component type that is used to render [the mutation](/docs/guides/component-basics#mutation) view.
+
+#### Example
+
+```tsx
+import { ComponentRegistry } from "@fabrix-framework/fabrix";
+
+const yourCustomRegistry = new ComponentRegistry({
+  custom: {
+    composite: {
+      myCustomFields: {
+        type: "form"
+        component: () => // ...
+      },
+    },
+  },
+});
+```

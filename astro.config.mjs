@@ -36,10 +36,6 @@ const starlightOptions = starlight({
       label: "Getting Started",
       items: [
         {
-          label: "How it works",
-          slug: "guides/how-it-works",
-        },
-        {
           label: "Setup",
           slug: "guides/setup",
         },
@@ -54,7 +50,7 @@ const starlightOptions = starlight({
       items: [
         {
           label: "Basics",
-          slug: "guides/component",
+          slug: "guides/component-basics",
         },
         {
           label: "Children props",
