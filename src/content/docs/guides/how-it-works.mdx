@@ -1,0 +1,32 @@
+---
+title: How it works
+description: How it works
+---
+import { Image } from 'astro:assets';
+import SingleQueryImage from "../../../assets/image-single.png"
+import CollectionQueryImage from "../../../assets/image-collection.png"
+import FormImage from "../../../assets/image-form.png"
+
+This page describes the mechanism of Fabrix.
+
+### Query (single)
+
+The most basic component that Fabrix can render is a component that is rendered from a single value query. This component is rendered from a query that returns a single value. 
+
+The query is executed when the component is mounted and the result is rendered as simple rows.
+
+<Image src={SingleQueryImage} alt="a component that is rendered from a single value query" />
+
+### Query (collection)
+
+When the query has the collection type, Fabrix looks into the part of the query that returns the collection and renders a component for each item in the collection. 
+
+<Image src={CollectionQueryImage} alt="a component that is rendered from a collection query" />
+
+### Mutation
+
+Fabrix can also automatically generate forms from GraphQL mutations. 
+
+The fields in the form are derived from the input types specified in the mutation variables. This allows you to quickly create and render forms based on your GraphQL schema without manually defining each form field.
+
+<Image src={FormImage} alt="a component that is rendered from a mutation" />

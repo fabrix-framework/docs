@@ -36,6 +36,10 @@ const starlightOptions = starlight({
       label: "Getting Started",
       items: [
         {
+          label: "How it works",
+          slug: "guides/how-it-works",
+        },
+        {
           label: "Setup",
           slug: "guides/setup",
         },
