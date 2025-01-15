@@ -2,6 +2,7 @@
 title: Component registry 
 description: Component registry 
 ---
+import { Badge } from '@astrojs/starlight/components';
 
 Fabrix allows you to customize how different types of data are rendered by providing a `componentRegistry` prop in `FabrixProvider`. 
 
@@ -45,65 +46,64 @@ const yourCustomRegistry = new ComponentRegistry({
 
 Both for default and custom components, there are categories to cover different types of GraphQL queries.
 
-### Fields
+**Subtype** is the category that breaks down the component types into more specific types. **Composite** is the category that is used to render the whole view of the query. **Unit** is the category that is used to render the each field, cell, or form field.
 
-`Fields` is the component type that is used to render [the single query](/docs/guides/component-basics#query-single) view.
+|name|subtype|description|
+|-----|---------|-------|
+|**Fields**|<Badge text="composite" />|Component type that is used to render [the single query](/docs/guides/component-basics#query-single) view. <br /> This should implement `FieldsComponentEntry` interface.|
+|**Table**|<Badge text="composite" />|Component type that is used to render [the collection query](/docs/guides/component-basics#query-collection) view. <br /> This should implement `TableComponentEntry` interface.|
+|**Form**|<Badge text="composite" />|Component type that is used to render [the mutation](/docs/guides/component-basics#mutation) view. <br /> This should implement `FormComponentEntry` interface.|
+|**Field**|<Badge variant="success" text="unit" />|Component type used in **Fields** to render the each field.|
+|**TableCell**|<Badge variant="success" text="unit" />|Component type used in **Table** to render the each cell.|
+|**FormField**|<Badge variant="success" text="unit" />|Component type used in **Form** to render the each form field.|
 
-#### Example
+## Examples
+
+Here is an example to define the custom component simply to render the table component is as follows:
 
 ```tsx
-import { ComponentRegistry } from "@fabrix-framework/fabrix";
+const customTable: TableComponentEntry = {
+  type: "table",
+  component: (props) => {
+    const headers = props.headers.map((header) => (
+      <th key={header.key}>{header.label}</th>
+    ));
 
-const yourCustomRegistry = new ComponentRegistry({
+    return (
+      <table>
+        <thead>
+          <tr>{headers}</tr>
+        </thead>
+        <tbody>
+          {props.values.map((item, index) => (
+            <tr key={index}>
+              {props.headers.map((header) => (
+                <td key={header.key}>{item[header.key] as ReactNode}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+}
+```
+
+Then, add the component to the custom component registry:
+
+```tsx
+const registry = new ComponentRegistry({
   custom: {
     composite: {
-      myCustomFields: {
-        type: "fields"
-        component: () => // ...
-      },
+      customTable,
     },
   },
 });
 ```
 
-### Table
+Every component inteterface type has a different set of props that are useful in creating dynamic, abstract components. 
 
-`Table` is the component type that is used to render [the collection query](/docs/guides/component-basics#query-collection) view.
+For instance, `TableComponentEntry` carries over information of column types from the query given to the component.
+It allows you to implement a table that renders the cell differently by the column on GraphQL types.
 
-#### Example
-
-```tsx
-import { ComponentRegistry } from "@fabrix-framework/fabrix";
-
-const yourCustomRegistry = new ComponentRegistry({
-  custom: {
-    composite: {
-      myCustomFields: {
-        type: "table"
-        component: () => // ...
-      },
-    },
-  },
-});
-```
-
-### Form
-
-`Form` is the component type that is used to render [the mutation](/docs/guides/component-basics#mutation) view.
-
-#### Example
-
-```tsx
-import { ComponentRegistry } from "@fabrix-framework/fabrix";
-
-const yourCustomRegistry = new ComponentRegistry({
-  custom: {
-    composite: {
-      myCustomFields: {
-        type: "form"
-        component: () => // ...
-      },
-    },
-  },
-});
-```
+In addition to that, using [the custom component builder](/docs/guides/component-builder) gives you more ad-hoc control over the custom component you create.
